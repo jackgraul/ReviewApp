@@ -1,0 +1,254 @@
+<!--
+Project Name: jgFeedbackA1
+File Name: index.html
+Revision History:
+Created: 2024-02-02 by Jack Graul
+Updated: 2024-02-20 by Jack Graul
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <title>jgFeedbackA2</title>
+    <!--jquery-->
+    <script src="js/lib/jquery-2.1.4.js"></script>
+    <!--jquery mobile-->
+    <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+    <!--jquery mobile stylesheet-->
+    <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+    <!--jQuery validate lib-->
+    <script src="js/lib/jquery.validate.js"></script>
+    <!--Styles-->
+    <link rel="stylesheet" href="css/jgmystyle.css">
+    <!--Scripts-->
+    <script src="js/jgglobal.js"></script>
+    <script src="js/jgfacade.js"></script>
+    <script src="js/jgutil.js"></script>
+    <script src="js/jgDAL.js"></script>
+    <script src="js/jgdatabase.js"></script>
+</head>
+<body>
+    <!--homepage-->
+    <div id="jgHomePage" data-role="page">
+        <header data-role="header" data-theme="a" data-position="fixed">
+            <h1>JG Feedback A2</h1>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#jgHomePage" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
+                    <li><a href="#jgAddFeedbackPage" data-icon="plus">Add</a></li>
+                    <li><a href="#jgViewFeedbackPage" data-icon="grid">Reviews</a></li>
+                    <li><a href="#jgSettingsPage" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+
+        </header>
+        <section data-role="content">
+            <h2 class="center">Jack Graul's Feedback A2 App</h2>
+            <p>
+                Welcome to my Feedback A2 app! This is a prototype designed for PROG 2435 Prgoramming Mobile Applications.
+                In this second iteration, validation has been added for the add and modify review forms.
+            </p>
+            <div class="center">
+                <img src="img/blackcat.png" alt="blackcat">
+            </div>
+            <div class="left">
+                <p>Feel free to contact me if you have any questions!</p>
+                <a data-role="button" data-icon="plus">555-555-5555</a>
+                <a data-role="button" data-icon="plus">jgraul0032@conestogac.on.ca</a>
+                <p>Website:</p>
+                <a data-role="button" data-icon="plus">Conestoga College</a>
+            </div>
+        </section>
+        <footer data-role="footer" data-theme="a" data-position="fixed">
+            <h1> &copy; 2024 Jack Graul </h1>
+        </footer>
+    </div>
+
+    <!--add page-->
+    <div id="jgAddFeedbackPage" data-role="page">
+        <header data-role="header" data-theme="a" data-position="fixed">
+            <h1>Add Feedback</h1>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#jgHomePage" data-icon="home">Home</a></li>
+                    <li><a href="#jgAddFeedbackPage" data-icon="plus" class="ui-btn-active ui-state-persist">Add</a></li>
+                    <li><a href="#jgViewFeedbackPage" data-icon="grid">Reviews</a></li>
+                    <li><a href="#jgSettingsPage" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <form id="frmAdd" name="frmAdd">
+                <label for="txtBusinessNameAdd">Business Name:</label>
+                <input type="text" id="txtBusinessNameAdd" name="txtBusinessNameAdd">
+
+                <label for="cmbTypeAdd">Type:</label>
+                <select name="cmbTypeAdd" id="cmbTypeAdd">
+                    <option value="other">Other</option>
+                    <option value="canadian">Canadian</option>
+                    <option value="asian">Asian</option>
+                </select>
+
+                <label for="txtReviewerEmailAdd">Reviewer Email:</label>
+                <input type="text" id="txtReviewerEmailAdd" name="txtReviewerEmailAdd">
+
+                <label for="txtReviewerCommentsAdd">Reviewer Comments:</label>
+                <textarea id="txtReviewerCommentsAdd" name="txtReviewerCommentsAdd"></textarea>
+
+                <label for="txtReviewDateAdd">Review Date:</label>
+                <input type="date" id="txtReviewDateAdd" name="txtReviewDateAdd">
+
+                <input type="checkbox" id="chkRatingsAdd" name="chkRatingsAdd">
+                <label for="chkRatingsAdd">Do you want to add your ratings?</label>
+                
+                <div data-role="controlgroup" data-type="horizontal">
+                    <button id="btnSave" name="btnSave" class="ui-btn-active">Save</button>
+                </div>
+
+                <div id="addRatings" name="addRatings" hidden>
+                    <label for="txtFoodQualityAdd">Food Quality (0-5):</label>
+                    <input type="number" id="txtFoodQualityAdd" name="txtFoodQualityAdd">
+
+                    <label for="txtServiceAdd">Service (0-5):</label>
+                    <input type="number" id="txtServiceAdd" name="txtServiceAdd">
+
+                    <label for="txtValueAdd">Value (0-5):</label>
+                    <input type="number" id="txtValueAdd" name="txtValueAdd">
+
+                    <label for="txtOverallRatingAdd">Overall Rating (calculated):</label>
+                    <input type="text" id="txtOverallRatingAdd" name="txtOverallRatingAdd" readonly>
+                </div>
+            </form>
+        </section>
+        <footer data-role="footer" data-theme="a" data-position="fixed">
+            <h1> &copy; 2024 Jack Graul </h1>
+        </footer>
+    </div>
+
+    <!--reviews page-->
+    <div id="jgViewFeedbackPage" data-role="page">
+        <header data-role="header" data-theme="a" data-position="fixed">
+            <h1>List Of Reviews</h1>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#jgHomePage" data-icon="home" >Home</a></li>
+                    <li><a href="#jgAddFeedbackPage" data-icon="plus">Add</a></li>
+                    <li><a href="#jgViewFeedbackPage" data-icon="grid" class="ui-btn-active ui-state-persist">Reviews</a></li>
+                    <li><a href="#jgSettingsPage" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <ul id="lstViewFeedback" data-role="listview" class="ui-listview-inset" data-icon="false">
+                <li>
+                    <a href="#jgModifyFeedbackPage">
+                        <h3>Business Name: Kinton Ramen</h3>
+                        <p>Reviewer Email: rickybobby@gmail.com</p>
+                        <p>Comments: Ramen was very good!</p>
+                        <p>Review Date: 2024-02-18</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#jgModifyFeedbackPage">
+                        <h3>Business Name: Jinzakaya Sushi</h3>
+                        <p>Reviewer Email: rickybobby@gmail.com</p>
+                        <p>Comments: The sushi was very good! Great menu including takoyaki, well worth the price</p>
+                        <p>Review Date: 2024-02-20</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <footer data-role="footer" data-theme="a" data-position="fixed">
+            <h1> &copy; 2024 Jack Graul </h1>
+        </footer>
+    </div>
+
+    <!--settings page-->
+    <div id="jgSettingsPage" data-role="page">
+        <header data-role="header" data-theme="a" data-position="fixed">
+            <h1>Settings</h1>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#jgHomePage" data-icon="home" >Home</a></li>
+                    <li><a href="#jgAddFeedbackPage" data-icon="plus">Add</a></li>
+                    <li><a href="#jgViewFeedbackPage" data-icon="grid">Reviews</a></li>
+                    <li><a href="#jgSettingsPage" data-icon="gear" class="ui-btn-active ui-state-persist">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <label for="txtDefaultReviewerEmail">Default reviewer Email:</label>
+            <input type="text" id="txtDefaultReviewerEmail" name="txtDefaultReviewerEmail">
+            <button type="button" id="btnSaveDefaultEmail" name="btnSaveDefaultEmail" class="ui-btn-active">Save Defaults</button>
+            <button type="button" id="btnClearReviews" name="btnClearReviews" data-theme="b">Clear all reviews</button>
+        </section>
+        <footer data-role="footer" data-theme="a" data-position="fixed">
+            <h1> &copy; 2024 Jack Graul </h1>
+        </footer>
+    </div>
+
+    <!--modify feedback page-->
+    <div id="jgModifyFeedbackPage" data-role="page">
+        <header data-role="header" data-theme="a" data-position="fixed">
+            <h1>Modify Feedback</h1>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#jgHomePage" data-icon="home" >Home</a></li>
+                    <li><a href="#jgAddFeedbackPage" data-icon="plus">Add</a></li>
+                    <li><a href="#jgViewFeedbackPage" data-icon="grid" class="ui-btn-active ui-state-persist">Reviews</a></li>
+                    <li><a href="#jgSettingsPage" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <form id="frmModify" name="frmModify">
+                <label for="txtBusinessNameModify">Business Name:</label>
+                <input type="text" id="txtBusinessNameModify" name="txtBusinessNameModify">
+
+                <label for="cmbTypeModify">Type:</label>
+                <select name="cmbTypeModify" id="cmbTypeModify">
+                    <option value="other">Other</option>
+                    <option value="canadian">Canadian</option>
+                    <option value="asian">Asian</option>
+                </select>
+
+                <label for="txtReviewerEmailModify">Reviewer Email:</label>
+                <input type="text" id="txtReviewerEmailModify" name="txtReviewerEmailModify">
+
+                <label for="txtReviewerCommentsModify">Reviewer Comments:</label>
+                <textarea id="txtReviewerCommentsModify" name="txtReviewerCommentsModify"></textarea>
+
+                <label for="txtReviewDateModify">Review Date:</label>
+                <input type="date" id="txtReviewDateModify" name="txtReviewDateModify">
+
+                <input type="checkbox" id="chkRatingsModify" name="chkRatingsModify">
+                <label for="chkRatingsModify">Do you want to add your ratings?</label>
+
+                <div id="modifyRatings" name="modifyRatings" hidden>
+                    <label for="txtFoodQualityModify">Food Quality (0-5):</label>
+                    <input type="number" id="txtFoodQualityModify" name="txtFoodQualityModify">
+
+                    <label for="txtServiceModify">Service (0-5):</label>
+                    <input type="number" id="txtServiceModify" name="txtServiceModify">
+
+                    <label for="txtValueModify">Value (0-5):</label>
+                    <input type="number" id="txtValueModify" name="txtValueModify">
+
+                    <label for="txtOverallRatingModify">Overall Rating (calculated):</label>
+                    <input type="text" id="txtOverallRatingModify" name="txtOverallRatingModify" readonly>
+                </div>
+
+                <div class="left" data-role="controlgroup" data-type="horizontal">
+                    <button id="btnCancel" name="btnCancel">Cancel</button>
+                    <button id="btnDelete" name="btnDelete" data-theme="b">Delete</button>
+                    <button id="btnUpdate" name="btnUpdate" class="ui-btn-active">Update</button>
+                </div>
+            </form>
+        </section>
+        <footer data-role="footer" data-theme="a" data-position="fixed">
+            <h1> &copy; 2024 Jack Graul </h1>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+/*
+Project Name: jgFeedbackA1
+File Name: index.html
+Revision History:
+Created: 2024-02-02 by Jack Graul
+Updated: 2024-02-20 by Jack Graul
+*/
+
+.center {
+    text-align: center;
+}
+
+.left {
+    text-align: left;
+}
+
+label.error{
+    color: #F00;
+    font-weight: bold;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border: 1px red solid;
+}
