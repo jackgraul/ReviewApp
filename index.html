@@ -1,16 +1,17 @@
 <!--
-Project Name: jgFeedbackA1
+Project Name: jgFeedbackA3
 File Name: index.html
 Revision History:
 Created: 2024-02-02 by Jack Graul
 Updated: 2024-02-20 by Jack Graul
+Updated: 2024-03-19 by Jack Graul
 -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
-    <title>jgFeedbackA2</title>
+    <title>jgFeedbackA3</title>
     <!--jquery-->
     <script src="js/lib/jquery-2.1.4.js"></script>
     <!--jquery mobile-->
@@ -27,12 +28,13 @@ Updated: 2024-02-20 by Jack Graul
     <script src="js/jgutil.js"></script>
     <script src="js/jgDAL.js"></script>
     <script src="js/jgdatabase.js"></script>
+    <script src="js/jgmodels.js"></script>
 </head>
 <body>
     <!--homepage-->
     <div id="jgHomePage" data-role="page">
         <header data-role="header" data-theme="a" data-position="fixed">
-            <h1>JG Feedback A2</h1>
+            <h1>JG Feedback A3</h1>
             <div data-role="navbar" data-iconpos="top">
                 <ul>
                     <li><a href="#jgHomePage" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
@@ -44,10 +46,10 @@ Updated: 2024-02-20 by Jack Graul
 
         </header>
         <section data-role="content">
-            <h2 class="center">Jack Graul's Feedback A2 App</h2>
+            <h2 class="center">Jack Graul's Feedback A3 App</h2>
             <p>
-                Welcome to my Feedback A2 app! This is a prototype designed for PROG 2435 Prgoramming Mobile Applications.
-                In this second iteration, validation has been added for the add and modify review forms.
+                Welcome to my Feedback A3 app! This is a prototype designed for PROG 2435 Prgoramming Mobile Applications.
+                In this third iteration, database CRUD functionality was added.
             </p>
             <div class="center">
                 <img src="img/blackcat.png" alt="blackcat">
@@ -85,9 +87,6 @@ Updated: 2024-02-20 by Jack Graul
 
                 <label for="cmbTypeAdd">Type:</label>
                 <select name="cmbTypeAdd" id="cmbTypeAdd">
-                    <option value="other">Other</option>
-                    <option value="canadian">Canadian</option>
-                    <option value="asian">Asian</option>
                 </select>
 
                 <label for="txtReviewerEmailAdd">Reviewer Email:</label>
@@ -101,10 +100,6 @@ Updated: 2024-02-20 by Jack Graul
 
                 <input type="checkbox" id="chkRatingsAdd" name="chkRatingsAdd">
                 <label for="chkRatingsAdd">Do you want to add your ratings?</label>
-                
-                <div data-role="controlgroup" data-type="horizontal">
-                    <button id="btnSave" name="btnSave" class="ui-btn-active">Save</button>
-                </div>
 
                 <div id="addRatings" name="addRatings" hidden>
                     <label for="txtFoodQualityAdd">Food Quality (0-5):</label>
@@ -118,6 +113,10 @@ Updated: 2024-02-20 by Jack Graul
 
                     <label for="txtOverallRatingAdd">Overall Rating (calculated):</label>
                     <input type="text" id="txtOverallRatingAdd" name="txtOverallRatingAdd" readonly>
+                </div>
+
+                <div data-role="controlgroup" data-type="horizontal">
+                    <button type="button" id="btnSave" name="btnSave" class="ui-btn-active">Save</button>
                 </div>
             </form>
         </section>
@@ -140,24 +139,7 @@ Updated: 2024-02-20 by Jack Graul
             </div>
         </header>
         <section data-role="content">
-            <ul id="lstViewFeedback" data-role="listview" class="ui-listview-inset" data-icon="false">
-                <li>
-                    <a href="#jgModifyFeedbackPage">
-                        <h3>Business Name: Kinton Ramen</h3>
-                        <p>Reviewer Email: rickybobby@gmail.com</p>
-                        <p>Comments: Ramen was very good!</p>
-                        <p>Review Date: 2024-02-18</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="#jgModifyFeedbackPage">
-                        <h3>Business Name: Jinzakaya Sushi</h3>
-                        <p>Reviewer Email: rickybobby@gmail.com</p>
-                        <p>Comments: The sushi was very good! Great menu including takoyaki, well worth the price</p>
-                        <p>Review Date: 2024-02-20</p>
-                    </a>
-                </li>
-            </ul>
+            <ul id="lstViewFeedback" data-role="listview" class="ui-listview-inset" data-icon="false"></ul>
         </section>
         <footer data-role="footer" data-theme="a" data-position="fixed">
             <h1> &copy; 2024 Jack Graul </h1>
@@ -208,9 +190,6 @@ Updated: 2024-02-20 by Jack Graul
 
                 <label for="cmbTypeModify">Type:</label>
                 <select name="cmbTypeModify" id="cmbTypeModify">
-                    <option value="other">Other</option>
-                    <option value="canadian">Canadian</option>
-                    <option value="asian">Asian</option>
                 </select>
 
                 <label for="txtReviewerEmailModify">Reviewer Email:</label>
@@ -240,9 +219,9 @@ Updated: 2024-02-20 by Jack Graul
                 </div>
 
                 <div class="left" data-role="controlgroup" data-type="horizontal">
-                    <button id="btnCancel" name="btnCancel">Cancel</button>
-                    <button id="btnDelete" name="btnDelete" data-theme="b">Delete</button>
-                    <button id="btnUpdate" name="btnUpdate" class="ui-btn-active">Update</button>
+                    <button type="button" id="btnCancel" name="btnCancel">Cancel</button>
+                    <button type="button" id="btnDelete" name="btnDelete" data-theme="b">Delete</button>
+                    <button type="button" id="btnUpdate" name="btnUpdate" class="ui-btn-active">Update</button>
                 </div>
             </form>
         </section>
